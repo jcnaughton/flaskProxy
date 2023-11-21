@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>getJSON</title>
+  <style>
+  </style>
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+</head>
+<body>
+<div id="demo"></div>
+<script>
+$.getJSON( "http://127.0.0.1:5000/proxy/1.1.1.1", function( json ) {
+  document.getElementById("demo").innerHTML = json.name;
+ });
+</script>
+ 
+</body>
+</html>
