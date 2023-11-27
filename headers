@@ -1,0 +1,12 @@
+def mkheaders():
+    with open('headers.txt') as f:
+        lines = f.read().splitlines()
+
+    headers = {}
+    for line in lines:
+        if re.search(r'(.*)\: (.*)',str(line)):
+            m = re.search(r'(.*)\: (.*)',str(line))
+            headers[m.group(1)] = str(m.group(2))
+
+    del headers['Content-Length']
+    return headers
