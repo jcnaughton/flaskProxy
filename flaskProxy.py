@@ -7,9 +7,9 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 
-@app.route('/proxy/<ipAddress>')
-def profile(ipAddress):
-    url = 'http://' + ipAddress + '/api/index.html'
+@app.route('/proxy/<server>')
+def profile(server):
+    url = 'http://' + server + '/'
     r=requests.get(url)
     return r.text
 
