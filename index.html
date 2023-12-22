@@ -1,19 +1,40 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>getJSON</title>
-  <style>
-  </style>
-  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-</head>
+<!DOCTYPE html>
+<html>
 <body>
-<div id="demo"></div>
+
+<div id="row0"></div>
+<div id="row1"></div>
+<div id="row2"></div>
+
+<table>
+  <tr><td id="r0c0"></td><td id="r0c1"></td><td id="r0c2"></td></tr>
+  <tr><td id="r1c0"></td><td id="r1c1"></td><td id="r1c2"></td></tr>
+  <tr><td id="r2c0"></td><td id="r2c1"></td><td id="r2c2"></td></tr>
+
+</table>
+
 <script>
-$.getJSON( "http://127.0.0.1:5000/proxy/1.1.1.1", function( json ) {
-  document.getElementById("demo").innerHTML = json.name;
- });
-</script>
+
+async function populate(server,id) {
+  const requestURL =
+    "http://127.0.0.1:5000/proxy/" + server;
+  const request = new Request(requestURL);
+
+  const response = await fetch(request);
+  const apiResponse = await response.json();
+
+  document.getElementById("r" + id + "c0").innerHTML = apiResponse ['name'];
+  document.getElementById("r" + id + "c1").innerHTML = apiResponse ['serial'];
+  document.getElementById("r" + id + "c2").innerHTML = apiResponse ['mac'];
  
+
+}
+
+const servers = ["server1", "server2", "server3"];
+
+let i = 0; do { populate(servers[i],i); i++; } while (i < servers.length);
+
+
+</script>
 </body>
 </html>
